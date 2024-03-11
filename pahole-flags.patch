@@ -1,0 +1,12 @@
+--- a/scripts/pahole-flags.sh
++++ b/scripts/pahole-flags.sh
+@@ -14,4 +14,8 @@ if [ "${pahole_ver}" -ge "118" ] && [ "$
+ 	extra_paholeopt="${extra_paholeopt} --skip_encoding_btf_vars"
+ fi
+ 
++if [ "${pahole_ver}" -ge "124" ]; then
++	extra_paholeopt="${extra_paholeopt} --skip_encoding_btf_enum64"
++fi
++
+ echo ${extra_paholeopt}
+
