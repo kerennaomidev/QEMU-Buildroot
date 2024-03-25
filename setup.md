@@ -34,7 +34,7 @@ make menuconfig
 - Binary Emulations → x32 ABI for 64-bit mode, turn this OFF [ ]
 - Enable loadable modules support → Module unloading - Forced module unloading [*]
 
-Apply the pahole patch only if you get the following error while trying to run `make`. 
+Apply the pahole patch only if you get the following error while trying to run `make`.  
 `FAILED: load BTF from vmlinux: Invalid argument`
 
 ```zsh
