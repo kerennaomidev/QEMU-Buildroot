@@ -45,6 +45,7 @@ patch pahole-flags.sh < pahole-flags.patch
 make -j `getconf _NPROCESSORS_ONLN`
 vim run.sh
 ```
+Edit run.sh to include the following, change the location of the bzImage if needed. 
 ```zsh
 sudo qemu-system-x86_64 \
   -kernel linux-5.16.19/arch/x86_64/boot/bzImage \
@@ -56,11 +57,11 @@ sudo qemu-system-x86_64 \
   -net nic,model=virtio \
   -net user,hostfwd=tcp::10022-:22 \
 ```
+Get Buildroot. For the menuconfig options, there is a patch file that I've included with the changes I made. I'll update this file with the exact changes when I build and test on a different kernel version. Use `chmod +x` to make the script executable, run and login as root. Use `scp` to copy the binary from your system to QEMU. Run and test.
 ```zsh
 git clone https://github.com/buildroot/buildroot.git buildroot
 cd buildroot
 make menuconfig
- for options i enabled, let me know. i have a patch file that can be applied to the config file
 make -j$(nproc)
 cd ..
 vim run.sh
