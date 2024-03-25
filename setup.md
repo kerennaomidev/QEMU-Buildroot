@@ -37,7 +37,6 @@ make menuconfig
 make clean
 scripts/config --disable SYSTEM_TRUSTED_KEYS
 scripts/config --disable SYSTEM_REVOCATION_KEYS
-make -j `getconf _NPROCESSORS_ONLN`
 cd scripts/
 cp pahole-flags.sh pahole-flags.sh.bak
 vim pahole-flags.patch
