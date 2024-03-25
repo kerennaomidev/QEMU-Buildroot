@@ -1,0 +1,1 @@
+QEMU + Buildroot setup for testing kernel tracing tools across different kernel versions. Includes a markdown file with instructions, a patch file to overcome an issue with higher pahole versions and another patch file with config changes made to buildroot.
