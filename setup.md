@@ -34,19 +34,31 @@ make menuconfig
 - Binary Emulations → x32 ABI for 64-bit mode, turn this OFF [ ]
 - Enable loadable modules support → Module unloading - Forced module unloading [*]
 
-Apply the pahole patch only if you get the following error while trying to run `make`.  
-`FAILED: load BTF from vmlinux: Invalid argument`
-
 ```zsh
 make clean
 scripts/config --disable SYSTEM_TRUSTED_KEYS
 scripts/config --disable SYSTEM_REVOCATION_KEYS
 make -j `getconf _NPROCESSORS_ONLN`
+```
+Apply the pahole patch only if you get the following error while trying to run `make`.  
+`FAILED: load BTF from vmlinux: Invalid argument`
+```zsh
 cd scripts/
 cp pahole-flags.sh pahole-flags.sh.bak
 vim pahole-flags.patch
 patch pahole-flags.sh < pahole-flags.patch
+```
+If pahole-flags.sh is not available within the scripts directory, check if link-vmlinux.sh exists and make the following change under `gen_btf()`
+```diff 
+-LLVM_OBJCOPY="${OBJCOPY}" ${PAHOLE} -J ${PAHOLE_FLAGS} ${1}
++LLVM_OBJCOPY="${OBJCOPY}" ${PAHOLE} -J --skip_encoding_btf_enum64 ${PAHOLE_FLAGS} ${1}
+```
+Run make, check if bzImage has been generated within linux-x.x.x/arch/x86/boot
+```zsh
 make -j `getconf _NPROCESSORS_ONLN`
+```
+Create `run.sh` to boot QEMU with your kernel configuration. This should be done outside your kernel directory.
+```zsh
 vim run.sh
 ```
 Edit run.sh to include the following, change the location of the bzImage if needed. 
