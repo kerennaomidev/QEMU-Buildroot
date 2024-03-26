@@ -61,7 +61,7 @@ sudo qemu-system-x86_64 \
   -net nic,model=virtio \
   -net user,hostfwd=tcp::10022-:22 \
 ```
-Get Buildroot. For the menuconfig options, there is a patch file that I've included with the changes I made. I'll update this file with the exact changes when I build and test on a different kernel version. Use `chmod +x` to make the script executable, run and login as root. Use `scp` to copy the binary from your system to QEMU. Run and test.
+Get Buildroot. For the menuconfig options, there is a patch file that I've included with the changes I made. Use `chmod +x` to make the script executable, run and login as root. Use `scp` to copy the binary from your system to QEMU. Run and test.
 ```zsh
 git clone https://github.com/buildroot/buildroot.git buildroot
 cd buildroot
@@ -72,5 +72,6 @@ vim run.sh
 chmod +x run.sh
 ./run.sh
 ```
+
 @kerennaomidev
 Comment
