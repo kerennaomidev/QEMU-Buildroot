@@ -53,7 +53,7 @@ If pahole-flags.sh is not available within the scripts directory, check if link-
 -LLVM_OBJCOPY="${OBJCOPY}" ${PAHOLE} -J ${PAHOLE_FLAGS} ${1}
 +LLVM_OBJCOPY="${OBJCOPY}" ${PAHOLE} -J --skip_encoding_btf_enum64 ${PAHOLE_FLAGS} ${1}
 ```
-Run make, check if bzImage has been generated within linux-x.x.x/arch/x86/boot
+Run make, check if bzImage has been generated within linux-x.x.x/arch/x86_64/boot
 ```zsh
 make -j `getconf _NPROCESSORS_ONLN`
 ```
